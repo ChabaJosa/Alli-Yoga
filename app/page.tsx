@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import profilePhoto from "./img1.jpeg";
 
 export default function Home() {
   return (
@@ -26,7 +28,16 @@ function SiteNav() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-8">
         <div className="flex items-center gap-3">
-          <div className="size-8 rounded-full bg-gradient-to-br from-rose-200/40 to-emerald-200/40 dark:from-rose-300/15 dark:to-emerald-300/15 ring-1 ring-border" />
+          <div className="relative size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-border">
+            <Image
+              src={profilePhoto}
+              alt="Alli"
+              fill
+              className="object-cover"
+              sizes="32px"
+              priority
+            />
+          </div>
           <span className="text-lg font-semibold tracking-tight">Alli Yogi</span>
         </div>
         <nav className="hidden gap-8 md:flex">
@@ -80,19 +91,19 @@ function Testimonials() {
       name: "Sofia M.",
       quote:
         "Each class feels like a homecoming. I leave grounded, open-hearted, and deeply at ease.",
-      avatar: "/avatars/sofia.png",
+      avatar: profilePhoto.src,
     },
     {
       name: "Amara K.",
       quote:
         "A soft, safe space to listen to my body. The guidance is loving, gentle, and profound.",
-      avatar: "/avatars/amara.png",
+      avatar: profilePhoto.src,
     },
     {
       name: "Leila P.",
       quote:
         "The rhythm, the breath, the intention—everything feels thoughtfully woven and deeply feminine.",
-      avatar: "/avatars/leila.png",
+      avatar: profilePhoto.src,
     },
   ];
   return (
@@ -179,10 +190,15 @@ function About() {
     <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-border/60">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-200/30 to-emerald-200/30 dark:from-rose-300/10 dark:to-emerald-300/10" />
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-            <span className="text-sm">Portrait / Nature Placeholder</span>
-          </div>
+          <Image
+            src={profilePhoto}
+            alt="Alli — portrait"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-rose-200/20 to-emerald-200/20 dark:from-rose-300/10 dark:to-emerald-300/10" />
         </div>
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">About Alli</h2>
@@ -265,12 +281,19 @@ function CenteredCta() {
 
 function SiteFooter() {
   const links = ["Home", "Philosophy", "Offerings", "Retreats", "Contact"];
-  const socials = ["Instagram", "Pinterest", "Email"];
   return (
     <footer className="border-t border-border/60">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 sm:px-8">
         <div className="flex items-center gap-3">
-          <div className="size-8 rounded-full bg-gradient-to-br from-rose-200/40 to-emerald-200/40 dark:from-rose-300/15 dark:to-emerald-300/15 ring-1 ring-border" />
+          <div className="relative size-8 shrink-0 overflow-hidden rounded-full ring-1 ring-border">
+            <Image
+              src={profilePhoto}
+              alt="Alli"
+              fill
+              className="object-cover"
+              sizes="32px"
+            />
+          </div>
           <span className="text-base font-semibold tracking-tight">Alli Yogi</span>
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground sm:justify-center">
@@ -280,19 +303,28 @@ function SiteFooter() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground sm:justify-end">
-          {socials.map((s) => (
-            <Link href="#" key={s} className="hover:text-foreground">
-              {s}
-            </Link>
-          ))}
+        <div className="flex flex-col items-start gap-2 text-sm text-muted-foreground sm:items-end">
+          <Link
+            href="https://www.instagram.com/allidives/profilecard/?igsh=bXdtbjZoam92Y2kw"
+            className="hover:text-foreground"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </Link>
+          <Link href="mailto:Alli.barry@gmail.com" className="hover:text-foreground">
+            Alli.barry@gmail.com
+          </Link>
+          <Link href="tel:+19084777982" className="hover:text-foreground">
+            (908) 477-7982
+          </Link>
         </div>
       </div>
       <div className="border-t border-border/60 py-6">
         <p className="mx-auto max-w-7xl px-6 text-xs text-muted-foreground sm:px-8">
           © {new Date().getFullYear()} Alli Yogi. All rights reserved.
         </p>
-    </div>
+      </div>
     </footer>
   );
 }
