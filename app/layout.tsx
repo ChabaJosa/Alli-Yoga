@@ -1,7 +1,7 @@
 // For adding custom fonts with other frameworks, see:
 // https://tailwindcss.com/docs/font-family
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const fontSans = Inter({
@@ -9,9 +9,10 @@ const fontSans = Inter({
   variable: "--font-sans",
 });
 
-const fontSerif = Source_Serif_4({
+const fontSerif = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
 });
 
 const fontMono = JetBrains_Mono({
@@ -20,8 +21,9 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alli Yogi",
-  description: "Alli Yogi is a certified yoga teacher and has been teaching yoga for over 10 years.",
+  title: "Alli Barry — Private Yoga, Breathwork & Somatic Recovery",
+  description:
+    "Private coaching for athletes, executives, and creatives — yoga, breathwork, meditation, and nervous system regulation.",
 };
 
 export default function RootLayout({
@@ -31,7 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}>
+      <body
+        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} font-sans antialiased`}
+      >
         {children}
       </body>
     </html>
