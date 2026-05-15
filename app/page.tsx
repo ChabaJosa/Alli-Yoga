@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/lib/button-variants";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 import profilePhoto from "./img1.jpeg";
+import portraitPhoto from "./img3.png";
+
+const PHONE_HREF = "tel:+19084777982";
 
 export default function Home() {
   return (
@@ -41,7 +46,7 @@ function SiteNav() {
           <span className="text-lg font-semibold tracking-tight">Alli Yogi</span>
         </div>
         <nav className="hidden gap-8 md:flex">
-          {["Home", "Philosophy", "Offerings", "Retreats", "Contact"].map((item) => (
+          {["Home", "Privates", "Retreats", "Contact"].map((item) => (
             <Link
               key={item}
               href="#"
@@ -52,8 +57,15 @@ function SiteNav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" className="rounded-full px-5">View Classes</Button>
-          <Button className="rounded-full px-5">Book a Session</Button>
+          <a
+            href={PHONE_HREF}
+            className={cn(buttonVariants({ variant: "ghost" }), "rounded-full px-5")}
+          >
+            View Classes
+          </a>
+          <a href={PHONE_HREF} className={cn(buttonVariants(), "rounded-full px-5")}>
+            Book a Session
+          </a>
         </div>
       </div>
     </header>
@@ -191,7 +203,7 @@ function About() {
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-border/60">
           <Image
-            src={profilePhoto}
+            src={portraitPhoto}
             alt="Alli — portrait"
             fill
             className="object-cover"
@@ -271,8 +283,15 @@ function CenteredCta() {
           Begin your practice with intention. Your breath is ready. Your body knows the way.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button className="rounded-full px-6">Book a Session</Button>
-          <Button variant="ghost" className="rounded-full px-6">View Classes</Button>
+          <a href={PHONE_HREF} className={cn(buttonVariants(), "rounded-full px-6")}>
+            Book a Session
+          </a>
+          <a
+            href={PHONE_HREF}
+            className={cn(buttonVariants({ variant: "ghost" }), "rounded-full px-6")}
+          >
+            View Classes
+          </a>
         </div>
       </div>
     </section>
@@ -280,7 +299,7 @@ function CenteredCta() {
 }
 
 function SiteFooter() {
-  const links = ["Home", "Philosophy", "Offerings", "Retreats", "Contact"];
+  const links = ["Home", "Privates", "Retreats", "Contact"];
   return (
     <footer className="border-t border-border/60">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 sm:px-8">
@@ -303,7 +322,7 @@ function SiteFooter() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col items-start gap-2 text-sm text-muted-foreground sm:items-end">
+        <div className="flex flex-col flex-wrap items-start gap-2 text-sm text-muted-foreground sm:items-end">
           <Link
             href="https://www.instagram.com/allidives/profilecard/?igsh=bXdtbjZoam92Y2kw"
             className="hover:text-foreground"
@@ -312,8 +331,8 @@ function SiteFooter() {
           >
             Instagram
           </Link>
-          <Link href="mailto:Alli.barry@gmail.com" className="hover:text-foreground">
-            Alli.barry@gmail.com
+          <Link href="mailto:Allij.barry@gmail.com" className="hover:text-foreground">
+            Allij.barry@gmail.com
           </Link>
           <Link href="tel:+19084777982" className="hover:text-foreground">
             (908) 477-7982
